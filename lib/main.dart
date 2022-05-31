@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'game_core/game.dart';
+
 void main() {
 //этот метод настраивает правильную визуализацию наших виджетов
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,12 +14,11 @@ void main() {
       .whenComplete(() => {
 //убираем верхнюю строку
             SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]),
-
-            runApp(MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: Center(
-                child: Text("Game"),
+            runApp(
+              MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: Game(),
               ),
-            )),
+            ),
           });
 }

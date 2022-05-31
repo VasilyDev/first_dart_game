@@ -1,7 +1,9 @@
 //нижнее подчеркивание означает что переменая приватна
+import 'dart:isolate';
+
 bool _running = true;
 
-void start_loop() {
+void mainLoop(SendPort sendPort) async {
   final double _fps = 50;
   final double _second = 1000;
   final double _updateTime = _second / _fps;
@@ -19,6 +21,8 @@ void start_loop() {
     if (_loopWatch.elapsedMilliseconds > _updateTime) {
       print(_updates++);
       _loopWatch.reset();
+      //как обновили луп, мы отправляем данные в наш глаыный изолят
+      sendPort.send(true);
     }
   }
 
